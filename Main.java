@@ -1,4 +1,7 @@
-public abstract class User {
+import java.util.ArrayList;
+import java.util.List;
+
+  abstract class User {
     private String name;
     private String number;
     private String email;
@@ -55,17 +58,23 @@ public abstract class User {
         this.role = role;
     }
 
-    public String getProfilePicture() {
-        return profilePicture;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }
 class Buyer extends User {
+
     String address;
     List<Food> cart;
+    public Buyer(String name, String number, String email, String password, String role, String address) {
+        super(name, number, email, password, role);
+        this.address = address;
+        this.cart = new ArrayList<>();
+    }
 }
 class Seller extends User {
     String address;
@@ -74,10 +83,23 @@ class Seller extends User {
     String bio;
     String restoInfo;
     boolean hasResto;
+    public Seller(String name, String number, String email, String password, String role,
+                  String address, String creditCard, String bio, String restoInfo, boolean hasResto) {
+        super(name, number, email, password, role);
+        this.address = address;
+        this.creditCard = creditCard;
+        this.bio = bio;
+        this.restoInfo = restoInfo;
+        this.hasResto = hasResto;
+    }
 }
 class DeliveryPerson extends User {
     //Editable
     String creditCard;
+    public DeliveryPerson(String name, String number, String email, String password, String role, String creditCard) {
+        super(name, number, email, password, role);
+        this.creditCard = creditCard;
+    }
 }
 class Food{
     String name;
@@ -101,3 +123,8 @@ class Restaurant{
 class Admin{}
 interface Input{}
 interface Output{}
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+    }
+}
